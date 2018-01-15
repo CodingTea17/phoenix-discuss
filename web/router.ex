@@ -17,6 +17,7 @@ defmodule Discuss.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    get "/hello/:name", HelloController, :helloElixir
   end
 
   # Other scopes may use custom stacks.

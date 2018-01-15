@@ -1,0 +1,2 @@
+<h3>Hello <%= String.capitalize @name %>!</h3>
+<h4>-Elixir+Phoenix</h4>
