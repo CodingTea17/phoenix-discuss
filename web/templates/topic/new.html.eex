@@ -1,9 +1,11 @@
 <!-- .eex files aren't compiled but ran akin to scripts on a as called on basis -->
+<div class="card-panel">
+   <%= form_for @changeset, topic_path(@conn, :create), fn f -> %>
+      <div class="form-group">
+         <%= text_input f, :title, placeholder: "Title", class: "form-control" %>
+         <%= error_tag f, :title %>
+      </div>
 
-<%= form_for @changeset, topic_path(@conn, :create), fn f -> %>
-   <div class="form-group">
-      <%= text_input f, :title, placeholder: "Title", class: "form-control" %>
-   </div>
-
-   <%= submit "Save Topic", class: "btn btn-primary" %>
-<% end %>
+      <%= submit "Save Topic", class: "btn waves-effect waves-light" %>
+   <% end %>
+</div>
