@@ -6,6 +6,6 @@
          <%= error_tag f, :title %>
       </div>
 
-      <%= submit "Save Topic", class: "btn waves-effect waves-light" %>
+      <%= submit "Save Topic", class: "btn" %>
    <% end %>
 </div>

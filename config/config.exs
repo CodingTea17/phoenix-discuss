@@ -6,16 +6,14 @@
 use Mix.Config
 
 # General application configuration
-config :discuss,
-  ecto_repos: [Discuss.Repo]
+config :discuss, ecto_repos: [Discuss.Repo]
 
 # Configures the endpoint
 config :discuss, Discuss.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "XjrVpt8WAeL2V9ZGRiUJtibYnmlwzt3gyBv9iVD+wgZ+8fn6hdmK219o7Gx9Kr9i",
   render_errors: [view: Discuss.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Discuss.PubSub,
-           adapter: Phoenix.PubSub.PG2]
+  pubsub: [name: Discuss.PubSub, adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger
 config :logger, :console,
@@ -24,4 +22,4 @@ config :logger, :console,
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
-import_config "#{Mix.env}.exs"
+import_config "#{Mix.env()}.exs"
