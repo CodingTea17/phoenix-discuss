@@ -25,7 +25,7 @@ defmodule Discuss.Router do
     # get   "/", PageController, :index
 
     # Sets the sites index to the topics index
-    # get("/", Redirect, to: "/topics")
+    get("/", TopicController, :index)
     # get("/topics/new", TopicController, :new)
     # post("/topics/create", TopicController, :create)
     # get("/topics/:id/edit", TopicController, :edit)
