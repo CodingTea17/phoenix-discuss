@@ -19,14 +19,18 @@ defmodule Discuss.Router do
 
     get("/hello/:name", HelloController, :helloElixir)
 
+    # Phoenix has resources too
+    resources("/topics", TopicController)
+
     # get   "/", PageController, :index
 
     # Sets the sites index to the topics index
-    get("/", TopicController, :index)
-    get("/topics/new", TopicController, :new)
-    post("/topics/create", TopicController, :create)
-    get("/topics/:id/edit", TopicController, :edit)
-    put("/topics/:id/update", TopicController, :update)
+    # get("/", Redirect, to: "/topics")
+    # get("/topics/new", TopicController, :new)
+    # post("/topics/create", TopicController, :create)
+    # get("/topics/:id/edit", TopicController, :edit)
+    # put("/topics/:id/update", TopicController, :update)
+    # delete("/topics/:id"), TopicController, :delete)
   end
 
   # Other scopes may use custom stacks.
