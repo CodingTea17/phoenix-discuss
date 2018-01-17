@@ -1,8 +1,21 @@
 defmodule Discuss.AuthController do
-	use Discuss.Web, :controller
+	use Discuss.Web, :controller 
 	plug Ueberauth
 
-	def callback(conn, params) do
-		
+	alias Discuss.User
+
+	def callback(%{ assigns: %{ ueberauth_auth: auth } } = conn, params) do
+		user_params = %{token: auth.credentials.token, email: auth.info.email, provider: auth.provider}
+		changeset = User.changeset(%User{}, user_params)
+	end
+
+	defp insert_or_update_user(changeset) do
+		case MyRepo.get_by(User, email: changeset.changes.email) do
+			nil ->
+				Repo.insert(changeset)
+			user -> 
+				{ :ok, user }
+		end
 	end
 end
+
