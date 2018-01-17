@@ -1,6 +1,6 @@
 defmodule Discuss.Plugs.SetUser do
 	import Plug.Conn
-	
+
 	alias Discuss.Repo
 	alias Discuss.User
 
@@ -15,6 +15,7 @@ defmodule Discuss.Plugs.SetUser do
 				assign(conn, :user, user)
 			true ->
 				# Conn doesn't have a user_id
+				conn
 		end
 	end
 end
