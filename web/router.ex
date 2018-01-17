@@ -18,11 +18,10 @@ defmodule Discuss.Router do
     pipe_through(:browser)
 
     get("/hello/:name", HelloController, :helloElixir)
+    # get   "/", PageController, :index
 
     # Phoenix has resources too
     resources("/topics", TopicController)
-
-    # get   "/", PageController, :index
 
     # Sets the sites index to the topics index
     get("/", TopicController, :index)
@@ -31,6 +30,12 @@ defmodule Discuss.Router do
     # get("/topics/:id/edit", TopicController, :edit)
     # put("/topics/:id/update", TopicController, :update)
     # delete("/topics/:id"), TopicController, :delete)
+  end
+
+  scope "/auth", Discuss do
+    pipe_through :browser
+    get "/:provider", AuthController, :request
+    get "/:provider/callback", AuthController, :callback
   end
 
   # Other scopes may use custom stacks.
