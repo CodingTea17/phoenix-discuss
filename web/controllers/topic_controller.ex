@@ -5,6 +5,7 @@ defmodule Discuss.TopicController do
   # alias Discuss.Topic, as: Topic
   alias Discuss.Topic
   plug Discuss.Plugs.RequireAuth when action in [:new, :create, :edit, :update, :delete]
+  plug :validate_topic_owner when action in [:update, :edit, :delete]
 
   def index(conn, _params) do
     IO.inspect(get_flash(conn, :success))
@@ -71,4 +72,16 @@ defmodule Discuss.TopicController do
     |> redirect(to: topic_path(conn, :index))
   end
 
+  def validate_topic_owner(conn, _not_params) do
+    %{ params: %{ "id" => topic_id } } = conn
+
+    if Repo.get(Topic, topic_id).user_id == conn.assigns.user.id do
+      conn
+    else
+      conn
+      |> put_flash(:error, "You don't have permission to edit this topic.")
+      |> redirect(to: topic_path(conn, :index))
+      |> halt()
+    end
+  end
 end
