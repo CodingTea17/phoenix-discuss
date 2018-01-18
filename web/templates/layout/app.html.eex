@@ -16,7 +16,7 @@
   </head>
 
   <body>
-    <nav class="light-blue mb-1">
+    <nav class="deep-purple darken-4 mb-1">
       <div class="nav-wrapper container">
         <a href="/" class="brand-logo center">
           Discussions
