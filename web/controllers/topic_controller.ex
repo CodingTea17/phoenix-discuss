@@ -14,6 +14,11 @@ defmodule Discuss.TopicController do
     render(conn, "index.html", topics: topics)
   end
 
+  def show(conn, %{ "id" => topic_id }) do
+    topic = Repo.get(Topic, topic_id)
+    render conn, "show.html", topic: topic
+  end
+
   # Renders a page with a form to make a new Topic
   def new(conn, _params) do
     # Validates the params
@@ -41,10 +46,10 @@ defmodule Discuss.TopicController do
   end
 
   def edit(conn, %{ "id" => topic_id }) do
-	topic = Repo.get(Topic, topic_id)
-	changeset = Topic.changeset(topic)
+    topic = Repo.get(Topic, topic_id)
+    changeset = Topic.changeset(topic)
 
-	render conn, "edit.html", changeset: changeset, topic: topic
+    render conn, "edit.html", changeset: changeset, topic: topic
   end
 
   def update(conn, %{ "id" => topic_id, "topic" => topic }) do
