@@ -1,4 +1,10 @@
 <h1><%= @topic.title %></h1>
+
+<div class="input-field">
+  <textarea class="materialize-textarea"></textarea>
+  <button class="btn">Submit</button>
+</div>
+
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     window.socketToServer(<%= @topic.id %>);
