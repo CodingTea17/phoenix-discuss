@@ -1,1 +1,2 @@
 <h1><%= @topic.title %></h1>
+<button class="btn">Ping!</button>

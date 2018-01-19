@@ -9,4 +9,8 @@ channel.join()
   .receive("ok", resp => { console.log("Joined successfully", resp) })
   .receive("error", resp => { console.log("Unable to join", resp) })
 
+document.querySelector('button').addEventListener('click', function() {
+  // Sends data up to the server
+  channel.push('comment:hello', { hi: 'there!' });
+});
 export default socket
