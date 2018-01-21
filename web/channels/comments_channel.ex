@@ -8,15 +8,15 @@ defmodule Discuss.CommentsChannel do
     # Finds the topic AND also finds the associated comments
     topic = Topic
       |> Repo.get(topic_id)
-      |> Repo.preload(:comments )
+      |> Repo.preload(comments: [:user])
 
     { :ok, %{ comments: topic.comments }, assign(socket, :topic, topic) }
   end
 
-  def handle_in(name, %{ "content" => content }, socket) do
+  def handle_in(_name, %{ "content" => content }, socket) do
     topic = socket.assigns.topic
     user_id = socket.assigns.user_id
-    
+
     changeset = topic
       |> build_assoc(:comments, user_id: user_id)
       |> Comment.changeset(%{ content: content })

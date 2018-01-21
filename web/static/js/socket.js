@@ -25,6 +25,7 @@ const socketToServer = (topicId) => {
 }
 
 function renderComments(comments) {
+  console.log(comments);
   const renderedComments = comments.map(comment => {
     return commentTemplate(comment);
   });
@@ -39,9 +40,16 @@ function renderComment(event) {
 }
 
 function commentTemplate(comment) {
+  let username = 'Anonymous';
+  if (comment.user) {
+    username = comment.user.username;
+  }
   return `
     <li class="collection-item">
-      ${comment.content}
+      ${ comment.content }
+      <div class="secondary-content">
+        ${ username }
+      </div>
     </li>
   `
 }
