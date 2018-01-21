@@ -1,14 +1,13 @@
 defmodule Discuss.TopicController do
   use Discuss.Web, :controller
 
-  # Same as: 
+  # Same as:
   # alias Discuss.Topic, as: Topic
   alias Discuss.Topic
   plug Discuss.Plugs.RequireAuth when action in [:new, :create, :edit, :update, :delete]
   plug :validate_topic_owner when action in [:update, :edit, :delete]
 
   def index(conn, _params) do
-    IO.inspect(get_flash(conn, :success))
     topics = Repo.all(Topic)
 
     render(conn, "index.html", topics: topics)
@@ -56,7 +55,7 @@ defmodule Discuss.TopicController do
   def update(conn, %{ "id" => topic_id, "topic" => topic }) do
     old_topic = Repo.get(Topic, topic_id)
     changeset = Topic.changeset(old_topic, topic)
-    
+
     # Cool elixir way: get old topic and pipe it in as the first argument to the changeset method
     # changeset = Repo.get(Topic, topic_id) |> Topic.changeset(topic)
 
