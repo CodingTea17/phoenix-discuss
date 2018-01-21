@@ -1,4 +1,4 @@
-import {Socket} from "phoenix"
+import { Socket } from "phoenix"
 
 let socket = new Socket("/socket", { params: { token: window.userToken } })
 
@@ -15,7 +15,7 @@ const socketToServer = (topicId) => {
       console.log("Unable to join", resp)
     });
 
-    channel.on(`comments:${topicId}:new`, renderComment)
+    channel.on(`comments:${topicId}:new`, renderComment);
 
   document.querySelector("button").addEventListener("click", () => {
     const content = document.querySelector('textarea').value;
@@ -32,8 +32,8 @@ function renderComments(comments) {
   document.querySelector('.collection').innerHTML = renderedComments.join('');
 }
 
-function renderComment( { comment } ) {
-  const renderedComment = commentTemplate(comment);
+function renderComment(event) {
+  const renderedComment = commentTemplate(event.comment);
 
   document.querySelector('.collection').innerHTML += renderedComment;
 }

@@ -15,7 +15,7 @@ defmodule Discuss.Plugs.SetUser do
 				assign(conn, :user, user)
 			true ->
 				# Conn doesn't have a user_id
-				conn
+				assign(conn, :user, nil)
 		end
 	end
 end

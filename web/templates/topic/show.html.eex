@@ -2,7 +2,7 @@
 
 <div class="input-field">
   <textarea class="materialize-textarea"></textarea>
-  <button class="btn">Submit</button>
+  <button class="btn">Comment</button>
   <ul class="collection">
 
   </ul>
